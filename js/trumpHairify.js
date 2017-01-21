@@ -56,9 +56,6 @@ function addTrumpHair(img, face) {
     // $(img).before(square)
 
     if ($(img).parent().is("a")) {
-        console.log($(img).parent())
-        hair.wrap('<div class="hair-wrapper"></div>')
-        hair.css("position", "relative")
         $(img).parent().before(hair)
     } else {
         $(img).before(hair)
@@ -86,6 +83,7 @@ function trumpHairify(img) {
                     img.src.substring(0, 16) != 'chrome-extension' &&
                     addTrumpHair(img, face)
                 })
+                window.clearTimeout(window.__hairfyingID)
             },
             error:function (code, message) {
                 console.log('Error: ' + message);
@@ -119,7 +117,19 @@ $(document).ready(function() {
                 window.__hairfying = true
             }, 3000)
         }
-
     });
+    $(document).bind('DOMNodeInserted', () => {
+        if (window.__hairfyingID != undefined) {
+            window.clearTimeout(window.__hairfyingID)
+        }
+
+        window.__hairfyingID = window.setTimeout(function() {
+            window.__hairfying = true
+            !window.disabled && hairifyAll();
+        }, 5000)
+
+
+    })
+
 })
 

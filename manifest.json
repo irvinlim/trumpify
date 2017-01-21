@@ -35,6 +35,10 @@
                 "js/trumpify_avatars.js",
                 "js/trumpify_names.js",
                 "js/trumpHairify.js"
+                "js/trumpify_tweets.js"
+            ],
+            "css": [
+                "css/trumpify_tweets.css"
             ],
             "run_at": "document_end"
         }
