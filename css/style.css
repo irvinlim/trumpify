@@ -17,7 +17,7 @@ a.fb-share-button:hover { opacity: 0.9; }
 body.disabled #btn-toggle { background: #900; }
 #btn-toggle:hover { opacity: 0.8; }
 
-img { width: 200px; height: 200px; object-fit: cover; }
+img.trump, img.obama { width: 128px; height: 128px; margin: 0 36px; }
 img.trump, body.disabled img.obama { display: inline-block; }
 img.obama, body.disabled img.trump { display: none; }
 
