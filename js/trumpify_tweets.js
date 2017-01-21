@@ -21,11 +21,11 @@ let addTrumpifyTweetsSelector = () => {
         $('.trumpify_tweets_selector .trumpify_dropdown').append('<span>' + tweet + '</span>');
     });
 
-    $(".trumpify_selector_button").click(function() {
+    $(".trumpify_selector_button").click(function () {
         $(".trumpify_dropdown").addClass('trumpify_visible');
     });
 
-    $(".trumpify_selector_container").on('blur mouseleave', function() {
+    $(".trumpify_selector_container").on('blur mouseleave', function () {
         $(".trumpify_dropdown").removeClass('trumpify_visible');
     });
 
@@ -33,7 +33,7 @@ let addTrumpifyTweetsSelector = () => {
     //     console.log(e.target);
     // });
 
-    $(".trumpify_tweets_selector .trumpify_dropdown span").click(function(e) {
+    $(".trumpify_tweets_selector .trumpify_dropdown span").click(function (e) {
         let text = $(e.target).html();
         let textarea = $('#feedx_container div[role="combobox"] span');
         textarea.html('<span data-text="true">' + text + '</span>');
@@ -41,7 +41,7 @@ let addTrumpifyTweetsSelector = () => {
         $(".trumpify_dropdown").removeClass('trumpify_visible');
         $(".trumpify_after").addClass('trumpify_visible');
 
-        $('div[role="combobox"]')[0].addEventListener("keypress", function(e) {
+        $('div[role="combobox"]')[0].addEventListener("keypress", function (e) {
             $(".trumpify_after").removeClass('trumpify_visible');
         });
 
@@ -81,16 +81,21 @@ let addTrumpifyTweetsSelector = () => {
     });
 };
 
-$(document).ready(function() {
-    let checkForActive = setInterval(function() {
-        if (document.querySelector("#feedx_container form")) {
-            return;
-        }
+chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
+    if (!isEnabled) return;
 
-        // Stop polling
-        clearInterval(checkForActive);
+    $(document).ready(function () {
+        let checkForActive = setInterval(function () {
+            if (document.querySelector("#feedx_container form")) {
+                return;
+            }
 
-        // Add selector
-        addTrumpifyTweetsSelector();
-    }, 100);
+            // Stop polling
+            clearInterval(checkForActive);
+
+            // Add selector
+            addTrumpifyTweetsSelector();
+        }, 100);
+    });
 });
+
