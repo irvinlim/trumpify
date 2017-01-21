@@ -48,6 +48,16 @@ let trumpify = () => {
 
 };
 
-// Use setInterval to repeatedly make Facebook great again and again and again...
-// There is no easy way to detect page changes without access to the internal React code.
-setInterval(trumpify, 50);
+document.body.addEventListener('DOMNodeInserted', () => {
+    // Don't observe so often
+    if (window.__trumpifyPageJustLoaded) {
+        return;
+    }
+
+    // Timeout to allow re-observing
+    setTimeout(() => {
+        window.__trumpifyPageJustLoaded = false;
+    }, 500);
+
+    trumpify();
+});
