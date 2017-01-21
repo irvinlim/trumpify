@@ -11,10 +11,6 @@
     "default_title": "Make Facebook Great Again!"
   },
   
-  "permissions": [
-    "activeTab"
-  ],
-  
   "content_scripts": [
     {
       "matches": ["https://www.facebook.com/* "],
@@ -24,6 +20,7 @@
   ],
   
   "permissions": [
+    "activeTab",
     "https://www.facebook.com/*",
     "http://www.facebook.com/*"
   ],
