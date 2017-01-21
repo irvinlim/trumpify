@@ -39,7 +39,12 @@ chrome.storage.local.get({
     });
 
     // Bind switches
-    $("[type=checkbox], .switch").click(function() {
+    $('.switch .toggle').click(function(e) {
+        e.stopPropagation();
+        $(this).parent().find('input[type=checkbox]').click();
+    });
+
+    $("[type=checkbox]").click(function() {
         let classMap = {
             avatars: 'isAvatarsEnabled',
             names: 'isNamesEnabled',
