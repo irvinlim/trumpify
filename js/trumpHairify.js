@@ -23,6 +23,7 @@ function hackDrawImageToCanvas(img) {
 }
 
 function addTrumpHair(img, face) {
+    console.log(face, img.src)
     var scaleX = img.width / img.naturalWidth
     var scaleY = img.height / img.naturalHeight
     var square = $('<div>', {
@@ -55,9 +56,19 @@ function addTrumpHair(img, face) {
     // $(img).before(square)
 
     if ($(img).parent().is("a")) {
+<<<<<<< 0f35dc40501906e42f6571e8a23978eaf644460b
         console.log($(img).parent())
         hair.wrap('<div class="hair-wrapper"></div>')
         hair.css("position", "relative")
+=======
+        console.log("Wrap")
+        $(hair).wrap('<div>', {
+            'css': {
+                'position': 'absolute'
+            }
+        })
+        $(hair).css("position", "relative")
+>>>>>>> Add hair
         $(img).parent().before(hair)
     } else {
         $(img).before(hair)
