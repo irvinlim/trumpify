@@ -1,3 +1,5 @@
+let TOTAL_AVATAR_COUNT = 11;
+
 // Declare selectors
 let selectorConfig = {
 
@@ -16,6 +18,9 @@ let selectorConfig = {
 
 };
 
+// Global
+let _previousRandom = null;
+
 // Method to set pictures, given a selector
 let setPictures = (selector) => {
     let selectedBlocks = document.querySelectorAll(selector);
@@ -31,8 +36,17 @@ let setPictures = (selector) => {
             // Set flag
             img.dataset.trumpify = true;
 
+            // Get random number
+            let random;
+
+            do {
+                random = Math.floor(Math.random() * TOTAL_AVATAR_COUNT) + 1;
+            } while (random === _previousRandom);
+
+            _previousRandom = random;
+
             // Update image src
-            img.src = "https://lh5.googleusercontent.com/-Sv0q6lkSAGM/AAAAAAAAAAI/AAAAAAAAAYI/eE7kV9LMcnQ/s0-c-k-no-ns/photo.jpg";
+            img.src = chrome.extension.getURL("img/avatars/" + random + ".jpg");
         }
     }
 };
