@@ -1,6 +1,6 @@
 [
     {
-        "word": "(Marco|Jeb|John|Ted|Ben|Hillary|Bernie)",
+        "word": "(Marco|Jeb|John|Ted|Ben|Hillary|Bernie|Barack)",
         "replacements": [
             "Donald",
             "Donald J.",
@@ -8,7 +8,7 @@
         ]
     },
     {
-        "word": "(Rubio|Bush|Kasich|Cruz|Carson|Clinton|Sanders)",
+        "word": "(Rubio|Bush|Kasich|Cruz|Carson|Clinton|Sanders|Obama)",
         "replacements": [
             "Trump"
         ]
@@ -58,12 +58,6 @@
         "word": "dollars",
         "replacements": [
             "a small loan of a million dollars"
-        ]
-    },
-    {
-        "word": "[Oo]bama",
-        "replacements": [
-            "Kenyan-born Obama"
         ]
     }
 ]
