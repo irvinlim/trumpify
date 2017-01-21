@@ -41,12 +41,17 @@ function trumpifyNames() {
     }
 }
 
-$(document).bind("scroll", function () {
-    if (!window.disabled) {
-        trumpifyNames()
-    }
-});
 
-$(document).ready(function () {
-    trumpifyNames()
+chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
+    if (!isEnabled) return;
+
+    $(document).bind("scroll", function () {
+        if (!window.disabled) {
+            trumpifyNames()
+        }
+    });
+
+    $(document).ready(function () {
+        trumpifyNames()
+    });
 });
