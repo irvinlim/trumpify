@@ -19,5 +19,5 @@ body.disabled #btn-toggle { background: #900; }
 #btn-toggle:hover { opacity: 0.8; }
 
 img { width: 200px; height: 200px; object-fit: cover; }
-img.trump, body.disabled img.clinton { display: inline-block; }
-img.clinton, body.disabled img.trump { display: none; }
+img.trump, body.disabled img.obama { display: inline-block; }
+img.obama, body.disabled img.trump { display: none; }
