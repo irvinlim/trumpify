@@ -1,29 +1,23 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "Trumpify",
-  "description": "This extension replaces pictures and names to the 45th president of the USA.",
-  "version": "1.0",
+    "name": "Trumpify",
+    "description": "This extension replaces pictures and names to the 45th president of the USA.",
+    "version": "1.0",
 
-  "browser_action": {
-    "default_icon": "img/icon_19.png",
-    "default_popup": "popup.html",
-    "default_title": "Make Facebook Great Again!"
-  },
-  
-  "content_scripts": [
-    {
-      "matches": ["https://www.facebook.com/*"],
-      "js": ["lib/jquery-3.1.1.min.js", "js/trumpify.js"],
-      "run_at": "document_start"
-    }
-  ],
-  
-  "permissions": [
-    "activeTab",
-    "https://www.facebook.com/*",
-    "http://www.facebook.com/*"
-  ],
+    "browser_action": {
+        "default_icon": "img/icon_19.png",
+        "default_popup": "popup.html",
+        "default_title": "Make Facebook Great Again!"
+    },
 
-  "web_accessible_resources": ["img/**/*"]
+    "content_scripts": [
+        {
+            "matches": ["*://*.facebook.com/*"],
+            "js": ["lib/jquery-3.1.1.min.js", "js/trumpify.js"],
+            "run_at": "document_end"
+        }
+    ],
+
+    "web_accessible_resources": ["img/**/*"]
 }
