@@ -1,4 +1,4 @@
-let TOTAL_AVATAR_COUNT = 20;
+let TOTAL_AVATAR_COUNT = 21;
 
 // Declare selectors
 let selectorConfig = {
