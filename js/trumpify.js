@@ -8,12 +8,10 @@ let selectorConfig = {
         'a[data-hovercard]',
         '.UFIImageBlockImage',
         '.profilePic',
+        '.profilePicThumb',
         'div[data-testid="chat_sidebar"] li a',
-        '.uiContextualLayerPositioner a[data-hovercard]',
-        '.uiContextualLayerPositioner .UFIImageBlockImage',
         '.uiContextualLayerPositioner td a',
         '.uiContextualLayerPositioner _dynamicHovercard__socialContextRow',
-        '.uiContextualLayerPositioner .profilePic',
     ],
 
 };
