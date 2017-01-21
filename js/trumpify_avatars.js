@@ -23,7 +23,7 @@ let selectorConfig = {
         '.friendBrowserCheckboxContentGrid .friendBrowserExtraSpacing',
         '.friendBrowserPhotoCrop',
         '.ruProfilePicXLarge',
-        '.ego_section .ego_unit a',
+        '.egoOrganicColumn .ego_section .ego_unit a[data-hovercard]',
         '[data-testid="friend_list_item"] a',
         '.fbTimelineUnit a[data-hovercard]',
     ],
