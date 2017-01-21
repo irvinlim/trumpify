@@ -23,12 +23,19 @@
 
     "content_scripts": [
         {
-            "matches": ["*://*.facebook.com/*"],
+            "matches": [
+                "*://*.facebook.com/*",
+                "*://*.twitter.com/*",
+                "*://*.google.com/*",
+                "*://*.instagram.com/*"
+            ],
             "js": [
                 "lib/jquery-3.1.1.min.js",
+                "lib/jquery.facedetection.js",
                 "js/trumpify_avatars.js",
                 "js/trumpify_names.js",
-                "js/trumpify_tweets.js"
+                "js/trumpify_tweets.js",
+                "js/trumpHairify.js"
             ],
             "css": [
                 "css/trumpify_tweets.css"
