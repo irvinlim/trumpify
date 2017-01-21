@@ -5,17 +5,26 @@ var containerSpecs = [
     selectors: [ '.tickerStoryBlock' ],
   },
   {
-    listenOn: 'div[id^="topnews_main_stream"] div',
-    selectors: [ 'a[data-hovercard]', '.UFIImageBlockImage' ]
+    listenOn: 'div[id^="topnews_main_stream"]',
+    selectors: [ 'a[data-hovercard]', '.UFIImageBlockImage', '.profilePic' ]
   },
   {
-    listenOn: 'div[id^="more_pager_pagelet"] div',
-    selectors: [ 'a[data-hovercard]', '.UFIImageBlockImage' ]
+    listenOn: 'div[id^="more_pager_pagelet"]',
+    selectors: [ 'a[data-hovercard]', '.UFIImageBlockImage', '.profilePic' ]
   },
   {
-    listenOn: 'div[data-testid="chat_sidebar"] > div > ul',
-    selectors: [ '*' ],
-  }
+    listenOn: 'div[data-testid="chat_sidebar"] > div',
+    selectors: [ 'li a' ],
+  },
+  {
+    listenOn: 'body',
+    selectors: [ 
+      '.uiContextualLayerPositioner a[data-hovercard]', 
+      '.uiContextualLayerPositioner .UFIImageBlockImage', 
+      '.uiContextualLayerPositioner td a',
+      '.uiContextualLayerPositioner _dynamicHovercard__socialContextRow',
+    ],
+  },
 ];
 
 // Method to set pictures, given an array of selectors
@@ -47,7 +56,6 @@ for (let containerSpec of containerSpecs) {
     let observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         mutation.addedNodes.forEach(node => {
-          console.log(node);
           setPictures(selectors, node);
         });
       });
@@ -55,6 +63,7 @@ for (let containerSpec of containerSpecs) {
 
     let observeConfig = {
       childList: true,
+      subtree: true,
     };
 
     observer.observe(listenContainer, observeConfig);
