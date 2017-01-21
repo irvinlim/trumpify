@@ -24,9 +24,9 @@ let containerSpecs = [
     },
     {
         listenOn: 'body',
-        selectors: [ 
-            '.uiContextualLayerPositioner a[data-hovercard]', 
-            '.uiContextualLayerPositioner .UFIImageBlockImage', 
+        selectors: [
+            '.uiContextualLayerPositioner a[data-hovercard]',
+            '.uiContextualLayerPositioner .UFIImageBlockImage',
             '.uiContextualLayerPositioner td a',
             '.uiContextualLayerPositioner _dynamicHovercard__socialContextRow',
             '.uiContextualLayerPositioner .profilePic',
@@ -49,7 +49,7 @@ let setPictures = (selectors, enclosing) => {
 
         for (let block of blocks) {
             let img = block.querySelector('img');
-            
+
             if (img && !img.dataset.trumpify) {
                 img.src = "https://lh5.googleusercontent.com/-Sv0q6lkSAGM/AAAAAAAAAAI/AAAAAAAAAYI/eE7kV9LMcnQ/s0-c-k-no-ns/photo.jpg";
                 img.dataset.trumpify = true;
