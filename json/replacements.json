@@ -1,5 +1,11 @@
 [
     {
+        "word": "barackobama",
+        "replacements": [
+            "donaldjtrump"
+        ]
+    },
+    {
         "word": "(Marco|Jeb|John|Ted|Ben|Hillary|Bernie|Barack)",
         "replacements": [
             "Donald",
