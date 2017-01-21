@@ -1,0 +1,69 @@
+[
+    {
+        "word": "(Marco|Jeb|John|Ted|Ben|Hillary|Bernie)",
+        "replacements": [
+            "Donald",
+            "Donald J.",
+            "The Donald"
+        ]
+    },
+    {
+        "word": "(Rubio|Bush|Kasich|Cruz|Carson|Clinton|Sanders)",
+        "replacements": [
+            "Trump"
+        ]
+    },
+    {
+        "word": " (important|large|pretty|old|big|little|young|disappointing|impressive)",
+        "replacements": [
+            " yuuge",
+            " yuuuuge",
+            " yuuuge",
+            " yuuuuuuge"
+        ]
+    },
+    {
+        "word": " ([Dd]emocratic [Ss]ociali)",
+        "replacements": [
+            " Conservative Trumpi"
+        ]
+    },
+    {
+        "word": " ([Ss]ociali)",
+        "replacements": [
+            " Conservative Trumpi"
+        ]
+    },
+    {
+        "word": " [Bb]ridge[. ;?]",
+        "replacements": [
+            " Wall - and they're gonna pay for it ",
+            " wall"
+        ]
+    },
+    {
+        "word": "[Bb]ridge",
+        "replacements": [
+            "Wall"
+        ]
+    },
+    {
+        "word": "Mexican ",
+        "replacements": [
+            "Mexican ",
+            "Mexican, some of whom I assume are good people, "
+        ]
+    },
+    {
+        "word": "dollars",
+        "replacements": [
+            "a small loan of a million dollars"
+        ]
+    },
+    {
+        "word": "[Oo]bama",
+        "replacements": [
+            "Kenyan-born Obama"
+        ]
+    }
+]

@@ -86,7 +86,7 @@ let setPictures = (selector, allRandom=true, name) => {
     }
 };
 
-let trumpify = () => {
+let trumpifyAvatars = () => {
 
     let { profilePictureSelectors } = selectorConfig;
 
@@ -119,5 +119,6 @@ document.body.addEventListener('DOMNodeInserted', () => {
         window.__trumpifyPageJustLoaded = false;
     }, 500);
 
-    trumpify();
+    trumpifyAvatars();
 });
+
