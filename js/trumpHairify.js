@@ -45,7 +45,7 @@ function addTrumpHair(img, face) {
             'position': 'absolute',
             'min-height': 'initial',
             'left':     face.x * scaleX + 'px',
-            'top':      face.y * scaleY - img.height*0.04 + 'px',
+            'top':      face.y * scaleY - img.height*0.05 + 'px',
             'width':    face.width  * scaleX + 'px',
             'height':   face.height * scaleX + 'px',
             'z-index':  3,
@@ -56,20 +56,16 @@ function addTrumpHair(img, face) {
     // $(img).before(square)
 
     if ($(img).parent().is("a")) {
-<<<<<<< 0f35dc40501906e42f6571e8a23978eaf644460b
-        console.log($(img).parent())
-        hair.wrap('<div class="hair-wrapper"></div>')
-        hair.css("position", "relative")
-=======
-        console.log("Wrap")
-        $(hair).wrap('<div>', {
-            'css': {
-                'position': 'absolute'
-            }
-        })
-        $(hair).css("position", "relative")
->>>>>>> Add hair
+        console.log("Wrap Hair")
         $(img).parent().before(hair)
+        $(hair).wrap('<div>')
+        $(hair).parent().css({
+            "position": "relative"
+        })
+        $(hair).css({
+            "position": "absolute",
+            "top": face.y * scaleY - img.height*0.10 + 'px',
+        })
     } else {
         $(img).before(hair)
     }
