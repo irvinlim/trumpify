@@ -37,7 +37,7 @@ chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
 });
 
 function updateToggleButton(isEnabled) {
-    $("#btn-toggle").text(isEnabled ? "Enabled" : "Disabled");
+    $("#btn-toggle").text(isEnabled ? "Trumpified" : "Obamaized");
 
     // Update body class
     $("body").removeClass('disabled');
