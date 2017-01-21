@@ -9,8 +9,8 @@
 }
 
 .trumpify_selector_container {
-    width: 100%;
     position: relative;
+    flex-grow: 1;
 }
 
 .trumpify_dropdown {
@@ -23,7 +23,7 @@
     display: block;
 }
 
-.trumpify_selector_button {
+.trumpify_button {
     display: block; max-width: 100px; padding: 0 8px; background-color: #f6f7f9;
     font-size: 12px; color: #4b4f56; font-weight: bold; line-height: 22px;
     border: 1px solid #ced0d4; border-radius: 2px; cursor: pointer;
@@ -51,5 +51,13 @@
 }
 
 .trumpify_after.trumpify_visible {
+    display: block;
+}
+
+.trumpify_clear {
+    display: none; background: #d04121; color: #FFF; margin: 0 10px;
+}
+
+.trumpify_clear.trumpify_visible {
     display: block;
 }

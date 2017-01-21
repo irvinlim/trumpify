@@ -10,10 +10,11 @@ let addTrumpifyTweetsSelector = () => {
         <div class="trumpify_tweets_selector">\
             <span class="trumpify_tweets_label">Choose a tweet:</span>\
             <div class="trumpify_selector_container">\
-                <span class="trumpify_selector_button">Select...</span>\
+                <span class="trumpify_selector_button trumpify_button">Select...</span>\
                 <div class="trumpify_dropdown"></div>\
                 <div class="trumpify_after">Now, click at the end of the text and press spacebar.</div>\
             </div>\
+            <div class="trumpify_clear trumpify_button">Clear</div>\
         </div>\
     ');
 
@@ -33,7 +34,7 @@ let addTrumpifyTweetsSelector = () => {
     //     console.log(e.target);
     // });
 
-    $(".trumpify_tweets_selector .trumpify_dropdown span").click(function (e) {
+    $(".trumpify_tweets_selector .trumpify_dropdown span").unbind('click').click(function (e) {
         let text = $(e.target).html();
         let textarea = $('#feedx_container div[role="combobox"] span');
         textarea.html('<span data-text="true">' + text + '</span>');
@@ -43,6 +44,13 @@ let addTrumpifyTweetsSelector = () => {
 
         $('div[role="combobox"]')[0].addEventListener("keypress", function (e) {
             $(".trumpify_after").removeClass('trumpify_visible');
+            $(".trumpify_clear").addClass('trumpify_visible');
+        });
+
+        $(".trumpify_clear").click(function() {
+            let textarea = $('#feedx_container div[role="combobox"] span');
+            textarea.html('<br data-text="true">');
+            $(".trumpify_clear").removeClass('trumpify_visible');
         });
 
         // let event = new KeyboardEvent('keypress', {
