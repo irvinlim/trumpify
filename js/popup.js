@@ -16,6 +16,11 @@ chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
         chrome.storage.local.set({ 'isEnabled': isEnabled }, function () {
             console.log('Settings saved');
         });
+
+        // Refresh
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
+        });
     });
 });
 
