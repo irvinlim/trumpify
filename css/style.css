@@ -14,6 +14,10 @@ a.fb-share-button img { width: 20px; height: 20px; display: block; margin-right:
 a.fb-share-button:hover { opacity: 0.9; }
 
 #btn-toggle { border: 0; background: #090; outline: none; display: block; margin: 10px auto; padding: 10px; color: #FFF; border-radius: 4px; cursor: pointer; }
-#btn-toggle.disabled { background: #900; }
+body.disabled #btn-toggle { background: #900; }
 #btn-toggle:disabled { display: none; }
 #btn-toggle:hover { opacity: 0.8; }
+
+img { width: 200px; height: 200px; object-fit: cover; }
+img.trump, body.disabled img.clinton { display: inline-block; }
+img.clinton, body.disabled img.trump { display: none; }

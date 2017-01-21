@@ -10,8 +10,6 @@ chrome.storage.local.get("isEnabled", function (isEnabled) {
     updateToggleButton(isEnabled);
 
     $("#btn-toggle").click(function () {
-        console.log('a');
-
         isEnabled = !isEnabled;
         updateToggleButton(isEnabled);
 
@@ -23,15 +21,24 @@ chrome.storage.local.get("isEnabled", function (isEnabled) {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
         });
+
+        // Set icon
+        let iconName;
+        if (isEnabled) {
+            iconName = 'icon_16';
+        } else {
+            iconName = 'icon_16_disabled';
+        }
+        chrome.browserAction.setIcon({ path: '../img/icons/' + iconName + '.png' });
     });
 });
 
 function updateToggleButton(isEnabled) {
     $("#btn-toggle").text(isEnabled ? "Enabled" : "Disabled");
 
-    // Update class
-    $("#btn-toggle").removeClass('disabled');
+    // Update body class
+    $("body").removeClass('disabled');
     if (!isEnabled) {
-        $("#btn-toggle").addClass('disabled');
+        $("body").addClass('disabled');
     }
 }
