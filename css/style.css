@@ -5,24 +5,30 @@ h3 { font-weight: 400; color: #777; }
 
 p { margin: 10px 0; }
 
-a.fb-share-button {
-    display: block; padding: 10px; margin: 10px auto; background-color: #3b5998; color: #fff;
-    text-decoration: none; display: flex; align-items: center; width: 70px;
-}
+a { display: block; padding: 6px 12px; margin: 10px; text-decoration: none; display: flex; align-items: center; }
+a:hover { opacity: 0.9; }
+a.fb-share-button { background-color: #3b5998; color: #fff; }
+a.fb-share-button img { width: 12px; height: 12px; display: block; margin-right: 10px; }
+a.homepage-button { background-color: #3d8470; color: #fff; }
 
-a.fb-share-button img { width: 20px; height: 20px; display: block; margin-right: 10px; }
-a.fb-share-button:hover { opacity: 0.9; }
 
 #btn-toggle { border: 0; background: #090; outline: none; display: block; margin: 10px auto; padding: 10px; color: #FFF; border-radius: 4px; cursor: pointer; }
 body.disabled #btn-toggle { background: #900; }
 #btn-toggle:hover { opacity: 0.8; }
 
-img.trump, img.obama { width: 128px; height: 128px; margin: 0 36px; }
+.content { background: #fafafa; }
+.banner { border-bottom: 1px solid #eee; }
+.footer { border-top: 1px solid #eee; background: #e6e6e6; display: flex; flex-direction: row; align-items: center; justify-content: center; }
+
+.banner img { width: 128px; height: 128px; margin: 20px 50px 30px; }
 img.trump, body.disabled img.obama { display: inline-block; }
 img.obama, body.disabled img.trump { display: none; }
 
+.instructions { color: #777; }
+
 body.inactive .controls { display: none; }
 body.disabled .switches { display: none; }
+body:not(.inactive) .instructions { display: none; }
 
 .switches {
     margin: 20px 0;
