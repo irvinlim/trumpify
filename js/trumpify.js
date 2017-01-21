@@ -1,5 +1,5 @@
 // Declare specifications for containers to find images in, and containers to bind to to detect changes
-var containerSpecs = [
+let containerSpecs = [
   {
     selectors: [
       'div[role="navigation"] div[data-click="profile_icon"] a',
@@ -19,7 +19,7 @@ var containerSpecs = [
     selectors: [ 'a[data-hovercard]', '.UFIImageBlockImage', '.profilePic' ]
   },
   {
-    listenOn: 'div[data-testid="chat_sidebar"] > div',
+    listenOn: 'div[data-testid="chat_sidebar"]',
     selectors: [ 'li a' ],
   },
   {
@@ -35,7 +35,11 @@ var containerSpecs = [
 ];
 
 // Method to set pictures, given an array of selectors
-var setPictures = (selectors, enclosing = document) => {
+let setPictures = (selectors, enclosing) => {
+  if (!enclosing.querySelectorAll) {
+    return;
+  }
+
   selectors.forEach(selector => {
     let blocks = enclosing.querySelectorAll(selector);
 
@@ -46,53 +50,62 @@ var setPictures = (selectors, enclosing = document) => {
     for (let block of blocks) {
       let img = block.querySelector('img');
       
-      if (img) {
+      if (img && !img.dataset.trumpify) {
         img.src = "https://lh5.googleusercontent.com/-Sv0q6lkSAGM/AAAAAAAAAAI/AAAAAAAAAYI/eE7kV9LMcnQ/s0-c-k-no-ns/photo.jpg";
+        img.dataset.trumpify = true;
       }
     }
   });
 };
 
-// Bind event listeners
-for (let containerSpec of containerSpecs) {
-  let { selectors, listenOn } = containerSpec;
+let trumpify = () => {
 
-  if (!listenOn) {
-    continue;
-  }
+  // Bind event listeners
+  for (let containerSpec of containerSpecs) {
+    let { selectors, listenOn } = containerSpec;
 
-  for (let listenContainer of document.querySelectorAll(listenOn)) {
-    let timer;
+    if (!listenOn) {
+      continue;
+    }
 
-    let observer = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
-        mutation.addedNodes.forEach(node => {
-          setPictures(selectors, node);
+    for (let listenContainer of document.querySelectorAll(listenOn)) {
+      let timer;
+
+      let observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+          mutation.addedNodes.forEach(node => {
+            setPictures(selectors, node);
+          });
         });
       });
+
+      let observeConfig = {
+        childList: true,
+        subtree: true,
+      };
+
+      observer.observe(listenContainer, observeConfig);
+    }
+  }
+
+  // Load immediately
+  for (let containerSpec of containerSpecs) {
+    let { selectors, listenOn } = containerSpec;
+    let containers;
+
+    if (listenOn) {
+      containers = document.querySelectorAll(listenOn);
+    } else {
+      containers = [ document ];
+    }
+
+    containers.forEach(container => {
+      setPictures(selectors, container);
     });
-
-    let observeConfig = {
-      childList: true,
-      subtree: true,
-    };
-
-    observer.observe(listenContainer, observeConfig);
-  }
-}
-
-// Load immediately
-for (let containerSpec of containerSpecs) {
-  let { selectors, listenOn } = containerSpec;
-  let containers;
-
-  if (listenOn) {
-    containers = document.querySelectorAll(listenOn);
-  } else {
-    containers = [ document ];
   }
 
-  containers.forEach(container => {
-    setPictures(selectors, container);
-  });
-}
+};
+
+// Use setInterval to repeatedly make Facebook great again and again and again...
+// There is no easy way to detect page changes without access to the internal React code.
+setInterval(trumpify, 100);
