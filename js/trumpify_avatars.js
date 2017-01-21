@@ -17,7 +17,7 @@ let selectorConfig = {
         '.friendBrowserCheckboxContentGrid .friendBrowserExtraSpacing',
         '.friendBrowserPhotoCrop',
         '.ruProfilePicXLarge',
-        '.egoOrganicColumn .ego_section .ego_unit a[data-hovercard]',
+        // '.egoOrganicColumn .ego_section .ego_unit a[data-hovercard]',
         '[data-testid="friend_list_item"] a',
         '.fbTimelineUnit a[data-hovercard]',
         '#fbVideoChannelSidepaneDetailsFeedbackFormContainer .fbPhotosSnowliftFeedback .clearfix',
@@ -37,7 +37,7 @@ let selectorConfig = {
         },
         {
             name: 'chatProfilePicture',
-            selectors: [ '.conversationContainer .conversation a' ],
+            selectors: [ '.conversationContainer a' ],
             allRandom: false
         },
     ],
