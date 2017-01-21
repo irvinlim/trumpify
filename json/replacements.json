@@ -20,6 +20,12 @@
         ]
     },
     {
+        "word": "([M|m]ichelle)",
+        "replacements": [
+            "Melania"
+        ]
+    },
+    {
         "word": "([A|a]merica)",
         "replacements": [
             "Russia"
