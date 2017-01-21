@@ -74,17 +74,23 @@ let trumpifyAvatars = () => {
 
 };
 
-document.body.addEventListener('DOMNodeInserted', () => {
-    // Don't observe so often
-    if (window.__trumpifyPageJustLoaded) {
-        return;
-    }
+chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
+    if (!isEnabled) return;
 
-    // Timeout to allow re-observing
-    setTimeout(() => {
-        window.__trumpifyPageJustLoaded = false;
-    }, 500);
+    document.body.addEventListener('DOMNodeInserted', () => {
+        // Don't observe so often
+        if (window.__trumpifyPageJustLoaded) {
+            return;
+        }
 
-    trumpifyAvatars();
+        // Timeout to allow re-observing
+        setTimeout(() => {
+            window.__trumpifyPageJustLoaded = false;
+        }, 500);
+
+        trumpifyAvatars();
+    });
+
 });
+
 
