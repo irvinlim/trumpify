@@ -23,6 +23,7 @@ function hackDrawImageToCanvas(img) {
 }
 
 function addTrumpHair(img, face) {
+    console.log(face, img.src)
     var scaleX = img.width / img.naturalWidth
     var scaleY = img.height / img.naturalHeight
     var square = $('<div>', {
@@ -42,11 +43,12 @@ function addTrumpHair(img, face) {
         'class': 'hair',
         'css': {
             'position': 'absolute',
+            'min-height': 'initial',
             'left':     face.x * scaleX + 'px',
-            'top':      face.y * scaleY - img.height*0.05 + 'px',
+            'top':      face.y * scaleY - img.height*0.04 + 'px',
             'width':    face.width  * scaleX + 'px',
             'height':   face.height * scaleX + 'px',
-            'z-index':  1,
+            'z-index':  3,
             'transform':'scale(1.25, 1.25)'
         },
         'src': chrome.extension.getURL('img/hair/hair_5.png')
@@ -81,13 +83,12 @@ function trumpHairify(img) {
                 (typeof faces === "object") &&
                 Array.isArray(faces) &&
                 faces.forEach(function(face) {
-                    console.log(face, img.src)
-                    !chrome.extension.getURL("").match("/" + img.src + "/") &&
+                    img.src.substring(0, 16) != 'chrome-extension' &&
                     addTrumpHair(img, face)
                 })
             },
             error:function (code, message) {
-                alert('Error: ' + message);
+                console.log('Error: ' + message);
             }
         });
       }
@@ -96,12 +97,29 @@ function trumpHairify(img) {
     }
 }
 
+function hairifyAll() {
+    console.log("start trumpHairify")
+    window.__hairfying = true
+    setTimeout(function() {
+        window.__hairfying = false
+    }, 5000);
+    $.each($("img"), function(index, img) {
+        $(img).attr("isTrumpHair") != "true" && trumpHairify(img)
+    })
+}
+
 $(document).ready(function() {
-	setTimeout(function() {
-		console.log("start trumpHairify")
-		$.each($("img"), function(index, img) {
-			$(img).attr("isTrumpHair") != "true" && trumpHairify(img)
-		})
-	}, 3000)
+    hairifyAll();
+    window.__hairfying = false
+    $(document).bind("scroll", function(e){
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+            console.log('scrolled btm-100')
+            setTimeout(function() {
+                !window.__hairfying && !window.disabled && hairifyAll();
+                window.__hairfying = true
+            }, 3000)
+        }
+
+    });
 })
 
