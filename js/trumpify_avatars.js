@@ -4,13 +4,9 @@ let TOTAL_AVATAR_COUNT = 20;
 let selectorConfig = {
 
     profilePictureSelectors: [
-        'div[role="navigation"] div[data-click="profile_icon"] a',
-        '#feedx_container a',
         '.tickerActivityStories .tickerStoryBlock',
         '.userContentWrapper .clearfix > a',
         '.profilePic',
-        '.profilePicThumb',
-        '.profileThumb',
         'div[data-testid="chat_sidebar"] li a',
         '.uiContextualLayerPositioner td a',
         '.uiContextualLayerPositioner _dynamicHovercard__socialContextRow',
@@ -24,9 +20,19 @@ let selectorConfig = {
         '.egoOrganicColumn .ego_section .ego_unit a[data-hovercard]',
         '[data-testid="friend_list_item"] a',
         '.fbTimelineUnit a[data-hovercard]',
+        '#fbVideoChannelSidepaneDetailsFeedbackFormContainer .fbPhotosSnowliftFeedback .clearfix',
+        '#facebar_typeahead_view_list [role="gridcell"] a',
+        '#pages_navigation a[aria-label="Profile picture"]',
+        '.UFIImageBlockImage',
         {
             name: 'currentUserProfilePicture',
-            selectors: [ '.UFIImageBlockImage', '.fbxWelcomeBoxBlock' ],
+            selectors: [
+                '.fbxWelcomeBoxBlock',
+                'div[role="navigation"] div[data-click="profile_icon"] a',
+                '#feedx_container a',
+                '.profilePicThumb',
+                '.profileThumb',
+            ],
             allRandom: false
         },
         {
