@@ -1,6 +1,11 @@
-alert("f")
 // Declare specifications for containers to find images in, and containers to bind to to detect changes
 var containerSpecs = [
+  {
+    selectors: [
+      'div[role="navigation"] div[data-click="profile_icon"] a',
+      '#feedx_container a'
+    ]
+  },
   {
     listenOn: '.tickerActivityStories',
     selectors: [ '.tickerStoryBlock' ],
@@ -24,6 +29,7 @@ var containerSpecs = [
       '.uiContextualLayerPositioner .UFIImageBlockImage', 
       '.uiContextualLayerPositioner td a',
       '.uiContextualLayerPositioner _dynamicHovercard__socialContextRow',
+      '.uiContextualLayerPositioner .profilePic',
     ],
   },
 ];
@@ -51,6 +57,10 @@ var setPictures = (selectors, enclosing = document) => {
 for (let containerSpec of containerSpecs) {
   let { selectors, listenOn } = containerSpec;
 
+  if (!listenOn) {
+    continue;
+  }
+
   for (let listenContainer of document.querySelectorAll(listenOn)) {
     let timer;
 
@@ -74,8 +84,15 @@ for (let containerSpec of containerSpecs) {
 // Load immediately
 for (let containerSpec of containerSpecs) {
   let { selectors, listenOn } = containerSpec;
+  let containers;
 
-  document.querySelectorAll(listenOn).forEach(container => {
+  if (listenOn) {
+    containers = document.querySelectorAll(listenOn);
+  } else {
+    containers = [ document ];
+  }
+
+  containers.forEach(container => {
     setPictures(selectors, container);
   });
 }
