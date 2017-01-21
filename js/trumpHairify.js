@@ -23,7 +23,6 @@ function hackDrawImageToCanvas(img) {
 }
 
 function addTrumpHair(img, face) {
-    console.log(face, img.src)
     var scaleX = img.width / img.naturalWidth
     var scaleY = img.height / img.naturalHeight
     var square = $('<div>', {
