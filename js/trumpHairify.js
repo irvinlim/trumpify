@@ -114,18 +114,23 @@ function hairifyAll() {
     })
 }
 
-$(document).ready(function() {
-    hairifyAll();
-    window.__hairfying = false
-    $(document).bind("scroll", function(e){
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
-            console.log('scrolled btm-100')
-            setTimeout(function() {
-                !window.__hairfying && !window.disabled && hairifyAll();
-                window.__hairfying = true
-            }, 3000)
-        }
+chrome.storage.local.get({ isEnabled: true, isHairEnabled: true }, function ({ isEnabled, isHairEnabled }) {
+    if (!isEnabled || !isHairEnabled) {
+        return;
+    }
 
-    });
-})
+    $(document).ready(function() {
+        hairifyAll();
+        window.__hairfying = false
+        $(document).bind("scroll", function(e){
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+                console.log('scrolled btm-100')
+                setTimeout(function() {
+                    !window.__hairfying && !window.disabled && hairifyAll();
+                    window.__hairfying = true
+                }, 3000)
+            }
 
+        });
+    })
+});

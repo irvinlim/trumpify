@@ -114,8 +114,10 @@ let trumpifyAvatars = () => {
 
 };
 
-chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
-    if (!isEnabled) return;
+chrome.storage.local.get({ isEnabled: true, isAvatarsEnabled: true }, function ({ isEnabled, isAvatarsEnabled }) {
+    if (!isEnabled || !isAvatarsEnabled) {
+        return;
+    }
 
     document.body.addEventListener('DOMNodeInserted', () => {
         // Don't observe so often

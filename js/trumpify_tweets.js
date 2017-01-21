@@ -81,8 +81,10 @@ let addTrumpifyTweetsSelector = () => {
     });
 };
 
-chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
-    if (!isEnabled) return;
+chrome.storage.local.get({ isEnabled: true, isTweetsEnabled: true }, function ({ isEnabled, isTweetsEnabled }) {
+    if (!isEnabled || !isTweetsEnabled) {
+        return;
+    }
 
     $(document).ready(function () {
         let checkForActive = setInterval(function () {

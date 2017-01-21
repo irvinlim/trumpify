@@ -42,8 +42,10 @@ function trumpifyNames() {
 }
 
 
-chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
-    if (!isEnabled) return;
+chrome.storage.local.get({ isEnabled: true, isNamesEnabled: true }, function ({ isEnabled, isNamesEnabled }) {
+    if (!isEnabled || !isNamesEnabled) {
+        return;
+    }
 
     $(document).bind("scroll", function () {
         if (!window.disabled) {
