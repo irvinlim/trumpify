@@ -1,3 +1,4 @@
+alert("f")
 // Declare specifications for containers to find images in, and containers to bind to to detect changes
 var containerSpecs = [
   {
