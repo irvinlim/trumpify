@@ -22,55 +22,86 @@ function hackDrawImageToCanvas(img) {
     return canvas;
 }
 
+function addTrumpHair(img, face) {
+    var scaleX = img.width / img.naturalWidth
+    var scaleY = img.height / img.naturalHeight
+    var square = $('<div>', {
+        'class':'square',
+        'css': {
+            'position': 'absolute',
+            'left':     face.x * scaleX + 'px',
+            'top':      face.y * scaleY + 'px',
+            'width':    face.width  * scaleX + 'px',
+            'height':   face.height * scaleX + 'px',
+            'z-index':  1,
+            'border': 'solid 5px',
+            'border-color': 'white'
+        }
+    })
+    var hair = $('<img>', {
+        'class': 'hair',
+        'css': {
+            'position': 'absolute',
+            'left':     face.x * scaleX + 'px',
+            'top':      face.y * scaleY - img.height*0.05 + 'px',
+            'width':    face.width  * scaleX + 'px',
+            'height':   face.height * scaleX + 'px',
+            'z-index':  1,
+            'transform':'scale(1.25, 1.25)'
+        },
+        'src': chrome.extension.getURL('img/hair/hair_5.png')
+    })
+    // $(img).before(square)
+
+    if ($(img).parent().is("a")) {
+        console.log($(img).parent())
+        hair.wrap('<div class="hair-wrapper"></div>')
+        hair.css("position", "relative")
+        $(img).parent().before(hair)
+    } else {
+        $(img).before(hair)
+    }
+
+
+}
+
 function trumpHairify(img) {
- 	$(img).attr("isTrumpHair", "true");
- 	var crossImg = new Image();
-    crossImg.crossOrigin = "anonymous";
-    crossImg.width = img.width;
-    crossImg.style.width = img.width + "px";
-    crossImg.height = img.height;
-    crossImg.style.height = img.height + "px";
-    crossImg.src = img.src;
-    crossImg.onload = function(){
-		$(hackDrawImageToCanvas(crossImg)).faceDetection({
-			complete: function (faces) {
-				for (var i = 0; i < faces.length; i++) {
-					var scaleX = img.width / img.naturalWidth
-					var scaleY = img.height / img.naturalHeight
-					console.log(scaleX, scaleY, faces[i])
-					console.log(img.height, img.naturalHeight)
-					var square = $('<div>', {
-						'class':'trump-hair',
-						'css': {
-							'position': 'absolute',
-							'left':     faces[i].x * scaleX + 'px',
-							'top':      faces[i].y * scaleY + 'px',
-							'width':    faces[i].width  * scaleX + 'px',
-							'height':   faces[i].height * scaleX + 'px',
-							'z-index': 	1,
-							'border': 'solid 5px',
-							'border-color': 'white'
-						}
-					})
-					var wrap = $(img).wrap()
-					$(img).before(square)
-				}
-			},
-			error:function (code, message) {
-				alert('Error: ' + message);
-			}
-		});
-	}
+    try {
+    	$(img).attr("isTrumpHair", "true");
+     	var crossImg = new Image();
+        crossImg.crossOrigin = "anonymous";
+        crossImg.width = img.width;
+        crossImg.style.width = img.width + "px";
+        crossImg.height = img.height;
+        crossImg.style.height = img.height + "px";
+        crossImg.src = img.src;
+        crossImg.onload = function(){
+          $(hackDrawImageToCanvas(crossImg)).faceDetection({
+             complete: function (faces) {
+                (typeof faces === "object") &&
+                Array.isArray(faces) &&
+                faces.forEach(function(face) {
+                    console.log(face, img.src)
+                    !chrome.extension.getURL("").match("/" + img.src + "/") &&
+                    addTrumpHair(img, face)
+                })
+            },
+            error:function (code, message) {
+                alert('Error: ' + message);
+            }
+        });
+      }
+    } catch(e) {
+      console.log(e);
+    }
 }
 
 $(document).ready(function() {
 	setTimeout(function() {
-
 		console.log("start trumpHairify")
 		$.each($("img"), function(index, img) {
 			$(img).attr("isTrumpHair") != "true" && trumpHairify(img)
 		})
-
-	}, 5000)
+	}, 3000)
 })
 
