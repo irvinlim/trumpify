@@ -6,7 +6,7 @@ chrome.tabs.getSelected(null, function (tab) {
     }
 });
 
-chrome.storage.local.get("isEnabled", function (isEnabled) {
+chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
     updateToggleButton(isEnabled);
 
     $("#btn-toggle").click(function () {
@@ -14,7 +14,10 @@ chrome.storage.local.get("isEnabled", function (isEnabled) {
         updateToggleButton(isEnabled);
 
         chrome.storage.local.set({ 'isEnabled': isEnabled }, function () {
-            console.log('Settings saved');
+            // Refresh
+            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
+            });
         });
 
         // Refresh

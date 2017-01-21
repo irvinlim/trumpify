@@ -2,7 +2,7 @@
     {
         "word": "barackobama",
         "replacements": [
-            "donaldjtrump"
+            "donaldjtrump", "donaldtrump", "REALdonaldtrump"
         ]
     },
     {
@@ -17,6 +17,12 @@
         "word": "(Rubio|Bush|Kasich|Cruz|Carson|Clinton|Sanders|Obama)",
         "replacements": [
             "Trump"
+        ]
+    },
+    {
+        "word": "([A|a]merica)",
+        "replacements": [
+            "Russia"
         ]
     },
     {
