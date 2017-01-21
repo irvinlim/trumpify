@@ -6,10 +6,12 @@ chrome.tabs.getSelected(null, function (tab) {
     }
 });
 
-chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
+chrome.storage.local.get("isEnabled", function (isEnabled) {
     updateToggleButton(isEnabled);
 
     $("#btn-toggle").click(function () {
+        console.log('a');
+
         isEnabled = !isEnabled;
         updateToggleButton(isEnabled);
 
@@ -25,5 +27,11 @@ chrome.storage.local.get({ "isEnabled": true }, function ({ isEnabled }) {
 });
 
 function updateToggleButton(isEnabled) {
-    $("#btn-toggle").text(isEnabled ? "Disable" : "Enable");
+    $("#btn-toggle").text(isEnabled ? "Enabled" : "Disabled");
+
+    // Update class
+    $("#btn-toggle").removeClass('disabled');
+    if (!isEnabled) {
+        $("#btn-toggle").addClass('disabled');
+    }
 }
