@@ -58,3 +58,6 @@ a:hover{
   transform: translateY(4px);
 }
 
+.contact { color: #FFF; }
+.navbar-brand { display: flex; align-items: center; font-size: 24px; height: 70px; }
+.navbar-icon { width: 30px; height: 30px; display: inline-block; margin-right: 10px; }
