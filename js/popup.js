@@ -10,7 +10,7 @@ chrome.storage.local.get({
     isEnabled: true,
     isAvatarsEnabled: true,
     isNamesEnabled: true,
-    isHairEnabled: true,
+    isHairEnabled: false,
     isTweetsEnabled: true,
 }, function (result) {
     let { isEnabled, isAvatarsEnabled, isNamesEnabled, isHairEnabled, isTweetsEnabled } = result;

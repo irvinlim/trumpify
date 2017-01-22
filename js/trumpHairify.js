@@ -114,7 +114,7 @@ function hairifyAll() {
     })
 }
 
-chrome.storage.local.get({ isEnabled: true, isHairEnabled: true }, function ({ isEnabled, isHairEnabled }) {
+chrome.storage.local.get({ isEnabled: true, isHairEnabled: false }, function ({ isEnabled, isHairEnabled }) {
     if (!isEnabled || !isHairEnabled) {
         return;
     }

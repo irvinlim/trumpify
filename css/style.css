@@ -38,8 +38,7 @@ body:not(.inactive) .instructions { display: none; }
     display: flex;
     align-items: center;
     flex-direction: row;
-    width: 60%;
-    margin: 10px auto;
+    margin: 10px 20px;
 }
 
 .switchgroup label {
@@ -48,6 +47,7 @@ body:not(.inactive) .instructions { display: none; }
     text-align: left;
     margin-left: 10px;
     cursor: pointer;
+    flex-grow: 1;
 }
 
 /* https://codepen.io/ZoFish/pen/CLxmq */
