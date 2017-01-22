@@ -2,8 +2,8 @@
     "manifest_version": 2,
 
     "name": "Trumpify",
-    "description": "This extension replaces pictures and names to the 45th president of the USA.",
-    "version": "1.0",
+    "description": "This extension replaces pictures, text and more on Facebook to that of the 45th president of the USA.",
+    "version": "1.0.0",
 
     "browser_action": {
         "default_icon": "img/icons/icon_16.png",
